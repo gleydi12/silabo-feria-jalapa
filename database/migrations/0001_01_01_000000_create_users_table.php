@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('tipo')->default(1); // 1 => Profesores, 2 => Administradores, 0 => SuperADmin
             $table->rememberToken();
             $table->timestamps();
         });
