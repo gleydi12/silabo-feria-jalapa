@@ -6,6 +6,7 @@ use App\Filament\Resources\GuiaResource\Pages;
 use App\Filament\Resources\GuiaResource\RelationManagers;
 use App\Models\Asignatura;
 use App\Models\Guia;
+use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,19 +34,22 @@ class GuiaResource extends Resource
                     ->numeric()
                     ->default(null),
 
+                // Añadir una lista desplegable para seleccionar la carrera
+                // Cargar las carreras desde la base de datos
                 Forms\Components\Select::make('carrera_id')
-                ->label('Carrera')
-                ->options(Asignatura::all()->pluck('name', 'id'))
-                ->searchable(),
+                    ->label('Carrera')
+                    ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                    ->searchable(),
 
-                Forms\Components\TextInput::make('sede_id')
-                    ->numeric()
-                    ->default(null),
+                Forms\Components\Select::make('sede_id')
+                    ->label('Sede')
+                    ->options(Sede::all()->pluck('nombre', 'id'))
+                    ->searchable(),
 
                 Forms\Components\Select::make('asignatura_id')
-                ->label('asignatura')
-                ->options(Asignatura::all()->pluck('name', 'id'))
-                ->searchable(),
+                    ->label('asignatura')
+                    ->options(Asignatura::all()->pluck('nombre', 'id'))
+                    ->searchable(),
 
                 Forms\Components\Textarea::make('objetivo_conceptual')
                     ->columnSpanFull(),
