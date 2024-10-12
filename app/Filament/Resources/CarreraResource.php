@@ -17,7 +17,9 @@ class CarreraResource extends Resource
 {
     protected static ?string $model = Carrera::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Currículo';
+
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form
     {
@@ -78,7 +80,7 @@ class CarreraResource extends Resource
     {
         return [
             'index' => Pages\ListCarreras::route('/'),
-            'create' => Pages\CreateCarrera::route('/create'),
+            //'create' => Pages\CreateCarrera::route('/create'),
             'edit' => Pages\EditCarrera::route('/{record}/edit'),
         ];
     }

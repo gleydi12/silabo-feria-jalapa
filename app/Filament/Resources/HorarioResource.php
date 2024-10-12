@@ -21,7 +21,9 @@ class HorarioResource extends Resource
 {
     protected static ?string $model = Horario::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Planificación';
+
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
 
     public static function form(Form $form): Form
     {
@@ -34,17 +36,17 @@ class HorarioResource extends Resource
 
                 Forms\Components\Select::make('user_id')
                 ->label('User')
-                ->options(User::all()->pluck('name', 'id')) // nombre e id son los campos de la tabla carrera
+                ->options(User::all()->pluck('name', 'id')) // nombre e id son los campos de la tabla user
                 ->searchable(),
 
                 Forms\Components\Select::make('aula_id')
                 ->label('Aula')
-                ->options(Aula::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                ->options(Aula::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla aula
                 ->searchable(),
 
                 Forms\Components\Select::make('sede_id')
                 ->label('Sede')
-                ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
                 ->searchable(),
 
                 Forms\Components\TextInput::make('anio_lectivo_id')
@@ -109,7 +111,7 @@ class HorarioResource extends Resource
     {
         return [
             'index' => Pages\ListHorarios::route('/'),
-            'create' => Pages\CreateHorario::route('/create'),
+           // 'create' => Pages\CreateHorario::route('/create'),
             'edit' => Pages\EditHorario::route('/{record}/edit'),
         ];
     }

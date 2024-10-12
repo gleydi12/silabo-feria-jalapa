@@ -14,12 +14,15 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\User;
 
 class SilaboResource extends Resource
 {
     protected static ?string $model = Silabo::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Planificación';
+
+    protected static ?string $navigationIcon = 'heroicon-o-table-cells';
 
     public static function form(Form $form): Form
     {
@@ -30,15 +33,16 @@ class SilaboResource extends Resource
                 ->options(Asignatura::all()->pluck('nombre', 'id'))
                 ->searchable(),
 
-                Forms\Components\TextInput::make('user_id')
-                    ->numeric()
-                    ->default(null),
+                Forms\Components\Select::make('user_id')
+                ->label('User')
+                ->options(User::all()->pluck('name', 'id')) // nombre e id son los campos de la tabla user
+                ->searchable(),
 
                 Forms\Components\Select::make('sede_id')
                 ->label('Sede')
                 ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
                 ->searchable(),
-                
+
                 Forms\Components\TextInput::make('anio_lectivo_id')
                     ->numeric()
                     ->default(null),

@@ -18,21 +18,35 @@ class AulaResource extends Resource
 {
     protected static ?string $model = Aula::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Infraestructura';
+
+    protected static ?string $recordTitleAttribute = 'nombre';
+
+    protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Section::make(
+                    [
 
-                Forms\Components\Select::make('sede_id')
-                ->label('Sede')
-                ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
-                ->searchable(),
-            ]);
+                        Forms\Components\TextInput::make('nombre')
+                            ->required()
+                            ->maxLength(255),
+
+                        Forms\Components\Select::make('sede_id')
+                        ->label('Sede')
+                        ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
+                        ->searchable(),
+                    ]
+                )
+                ->columns()
+                ->description('Registro de Aulas')
+                ->icon('heroicon-o-sparkles')
+                ->iconColor('success')
+                ->iconSize('lg')
+           ] );
     }
 
     public static function table(Table $table): Table
@@ -62,6 +76,8 @@ class AulaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                //Tables\Actions\RestoreAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -81,7 +97,7 @@ class AulaResource extends Resource
     {
         return [
             'index' => Pages\ListAulas::route('/'),
-            'create' => Pages\CreateAula::route('/create'),
+           //'create' => Pages\CreateAula::route('/create'),
             'edit' => Pages\EditAula::route('/{record}/edit'),
         ];
     }

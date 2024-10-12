@@ -18,41 +18,56 @@ class PlanResource extends Resource
 {
     protected static ?string $model = Plan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Planificación';
+
+    protected static ?string $navigationIcon = 'heroicon-o-document';
+    protected static ?string $navigationLabel = 'Planes';
+    protected static ?string $pluralModelLabel = 'Planes';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('silabo_id')
-                    ->numeric()
-                    ->default(null),
-                    
-                Forms\Components\Select::make('sede_id')
-                ->label('Sede')
-                ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
-                ->searchable(),
+               Forms\Components\Section::make([
 
-                Forms\Components\TextInput::make('detalle_silabo_id')
-                    ->numeric()
-                    ->default(null),
-                Forms\Components\RichEditor::make('objetivo_conceptual')
-                    ->columnSpanFull(),
-                Forms\Components\RichEditor::make('objetivo_procedimental')
-                    ->columnSpanFull(),
-                Forms\Components\RichEditor::make('objetivo_actitudinal')
-                    ->columnSpanFull(),
-                Forms\Components\RichEditor::make('primer_momento')
-                    ->columnSpanFull(),
-                Forms\Components\RichEditor::make('segundo_momento')
-                    ->columnSpanFull(),
-                Forms\Components\RichEditor::make('tercer_momento')
-                    ->columnSpanFull(),
-                Forms\Components\RichEditor::make('aplicacion_eje')
-                    ->columnSpanFull(),
-                Forms\Components\RichEditor::make('observaciones')
-                    ->columnSpanFull(),
-            ]);
+                    Forms\Components\TextInput::make('silabo_id')
+                        ->numeric()
+                        ->default(null),
+
+                    Forms\Components\Select::make('sede_id')
+                    ->label('Sede')
+                    ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
+                    ->searchable(),
+
+                    Forms\Components\TextInput::make('detalle_silabo_id')
+                        ->numeric()
+                        ->default(null),
+                    Forms\Components\RichEditor::make('objetivo_conceptual')
+                        ->columnSpanFull(),
+                    Forms\Components\RichEditor::make('objetivo_procedimental')
+                        ->columnSpanFull(),
+                    Forms\Components\RichEditor::make('objetivo_actitudinal')
+                        ->columnSpanFull(),
+                    Forms\Components\RichEditor::make('primer_momento')
+                        ->columnSpanFull(),
+                    Forms\Components\RichEditor::make('segundo_momento')
+                        ->columnSpanFull(),
+                    Forms\Components\RichEditor::make('tercer_momento')
+                        ->columnSpanFull(),
+                    Forms\Components\RichEditor::make('aplicacion_eje')
+                        ->columnSpanFull(),
+                    Forms\Components\RichEditor::make('observaciones')
+                        ->columnSpanFull(),
+                ]
+
+                )
+                ->columns()
+                ->description('Registro de Planes')
+                ->icon('heroicon-o-sparkles')
+                ->iconColor('success')
+                ->iconSize('lg')
+
+           ] );
     }
 
     public static function table(Table $table): Table
