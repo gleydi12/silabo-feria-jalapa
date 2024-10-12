@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AulaResource\Pages;
 use App\Filament\Resources\AulaResource\RelationManagers;
 use App\Models\Aula;
+use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -26,9 +27,11 @@ class AulaResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('sede_id')
-                    ->numeric()
-                    ->default(null),
+
+                Forms\Components\Select::make('sede_id')
+                ->label('Sede')
+                ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                ->searchable(),
             ]);
     }
 

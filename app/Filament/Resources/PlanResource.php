@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PlanResource\Pages;
 use App\Filament\Resources\PlanResource\RelationManagers;
 use App\Models\Plan;
+use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -26,27 +27,30 @@ class PlanResource extends Resource
                 Forms\Components\TextInput::make('silabo_id')
                     ->numeric()
                     ->default(null),
-                Forms\Components\TextInput::make('sede_id')
-                    ->numeric()
-                    ->default(null),
+                    
+                Forms\Components\Select::make('sede_id')
+                ->label('Sede')
+                ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                ->searchable(),
+
                 Forms\Components\TextInput::make('detalle_silabo_id')
                     ->numeric()
                     ->default(null),
-                Forms\Components\Textarea::make('objetivo_conceptual')
+                Forms\Components\RichEditor::make('objetivo_conceptual')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('objetivo_procedimental')
+                Forms\Components\RichEditor::make('objetivo_procedimental')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('objetivo_actitudinal')
+                Forms\Components\RichEditor::make('objetivo_actitudinal')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('primer_momento')
+                Forms\Components\RichEditor::make('primer_momento')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('segundo_momento')
+                Forms\Components\RichEditor::make('segundo_momento')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('tercer_momento')
+                Forms\Components\RichEditor::make('tercer_momento')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('aplicacion_eje')
+                Forms\Components\RichEditor::make('aplicacion_eje')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('observaciones')
+                Forms\Components\RichEditor::make('observaciones')
                     ->columnSpanFull(),
             ]);
     }
