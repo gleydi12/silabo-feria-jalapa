@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('depende_de')->nullable()->constrained('catalogos');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 
