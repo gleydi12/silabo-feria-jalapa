@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('tipo')->default(1); // 1 => Profesores, 2 => Administradores, 0 => SuperADmin
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
