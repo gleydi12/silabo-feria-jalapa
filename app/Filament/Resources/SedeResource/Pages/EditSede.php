@@ -14,8 +14,8 @@ class EditSede extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-            ->icon('heroicon-o-trash')
-            ->label('Eliminar esta sede'),
+                ->icon('heroicon-o-trash')
+                ->label('Eliminar esta sede'),
         ];
     }
 }

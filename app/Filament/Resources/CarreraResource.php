@@ -3,22 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CarreraResource\Pages;
-use App\Filament\Resources\CarreraResource\RelationManagers;
 use App\Models\Carrera;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CarreraResource extends Resource
 {
     protected static ?string $model = Carrera::class;
-
     protected static ?string $navigationGroup = 'Currículo';
-
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form

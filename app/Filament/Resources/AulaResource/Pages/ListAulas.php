@@ -14,8 +14,8 @@ class ListAulas extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->icon('heroicon-m-plus')
-            ->label('Registrar aula'),
+                ->icon('heroicon-m-plus')
+                ->label('Registrar aula'),
         ];
     }
 }

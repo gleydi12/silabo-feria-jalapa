@@ -14,8 +14,8 @@ class ListSedes extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->icon('heroicon-m-plus')
-            ->label('Registrar Sedes'),
+                ->icon('heroicon-m-plus')
+                ->label('Registrar Sedes'),
         ];
     }
 }

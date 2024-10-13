@@ -14,8 +14,8 @@ class EditPlan extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-            ->icon('heroicon-o-trash')
-            ->label('Eliminar este plan'),
+                ->icon('heroicon-o-trash')
+                ->label('Eliminar este plan'),
         ];
     }
 }

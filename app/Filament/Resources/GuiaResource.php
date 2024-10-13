@@ -3,8 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GuiaResource\Pages;
-use App\Filament\Resources\GuiaResource\RelationManagers;
 use App\Models\Asignatura;
+use App\Models\Carrera;
 use App\Models\Guia;
 use App\Models\Sede;
 use Filament\Forms;
@@ -12,16 +12,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Models\Carrera;
 
 class GuiaResource extends Resource
 {
     protected static ?string $model = Guia::class;
-
     protected static ?string $navigationGroup = 'Planificación';
-
     protected static ?string $navigationIcon = 'heroicon-o-document-check';
 
     public static function form(Form $form): Form
@@ -36,12 +31,12 @@ class GuiaResource extends Resource
                     ->numeric()
                     ->default(null),
 
-                 // Añadir una lista desplegable para seleccionar la carrera
+                // Añadir una lista desplegable para seleccionar la carrera
                 // Cargar las carreras desde la base de datos
                 Forms\Components\Select::make('carrera_id')
-                ->label('Carrera')
-                ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
-                ->searchable(),
+                    ->label('Carrera')
+                    ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                    ->searchable(),
 
                 Forms\Components\Select::make('sede_id')
                     ->label('Sede')
@@ -49,9 +44,9 @@ class GuiaResource extends Resource
                     ->searchable(),
 
                 Forms\Components\Select::make('asignatura_id')
-                ->label('asignatura')
-                ->options(Asignatura::all()->pluck('nombre', 'id'))
-                ->searchable(),
+                    ->label('asignatura')
+                    ->options(Asignatura::all()->pluck('nombre', 'id'))
+                    ->searchable(),
 
                 Forms\Components\RichEditor::make('objetivo_conceptual')
                     ->columnSpanFull(),

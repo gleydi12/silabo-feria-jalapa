@@ -3,26 +3,21 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\HorarioResource\Pages;
-use App\Filament\Resources\HorarioResource\RelationManagers;
 use App\Models\Aula;
+use App\Models\Carrera;
 use App\Models\Horario;
+use App\Models\Sede;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Models\Carrera;
-use App\Models\Sede;
-use App\Models\User;
 
 class HorarioResource extends Resource
 {
     protected static ?string $model = Horario::class;
-
     protected static ?string $navigationGroup = 'Planificación';
-
     protected static ?string $navigationIcon = 'heroicon-o-clock';
 
     public static function form(Form $form): Form
@@ -30,24 +25,24 @@ class HorarioResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('carrera_id')
-                ->label('Carrera')
-                ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
-                ->searchable(),
+                    ->label('Carrera')
+                    ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                    ->searchable(),
 
                 Forms\Components\Select::make('user_id')
-                ->label('User')
-                ->options(User::all()->pluck('name', 'id')) // nombre e id son los campos de la tabla user
-                ->searchable(),
+                    ->label('User')
+                    ->options(User::all()->pluck('name', 'id')) // nombre e id son los campos de la tabla user
+                    ->searchable(),
 
                 Forms\Components\Select::make('aula_id')
-                ->label('Aula')
-                ->options(Aula::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla aula
-                ->searchable(),
+                    ->label('Aula')
+                    ->options(Aula::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla aula
+                    ->searchable(),
 
                 Forms\Components\Select::make('sede_id')
-                ->label('Sede')
-                ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
-                ->searchable(),
+                    ->label('Sede')
+                    ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
+                    ->searchable(),
 
                 Forms\Components\TextInput::make('anio_lectivo_id')
                     ->numeric()
@@ -111,7 +106,7 @@ class HorarioResource extends Resource
     {
         return [
             'index' => Pages\ListHorarios::route('/'),
-           // 'create' => Pages\CreateHorario::route('/create'),
+            // 'create' => Pages\CreateHorario::route('/create'),
             'edit' => Pages\EditHorario::route('/{record}/edit'),
         ];
     }

@@ -14,8 +14,8 @@ class EditAula extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-            ->icon('heroicon-o-trash')
-            ->label('Eliminar esta aula'),
+                ->icon('heroicon-o-trash')
+                ->label('Eliminar esta aula'),
         ];
     }
 }

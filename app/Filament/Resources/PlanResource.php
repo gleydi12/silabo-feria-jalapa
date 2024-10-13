@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PlanResource\Pages;
-use App\Filament\Resources\PlanResource\RelationManagers;
 use App\Models\Plan;
 use App\Models\Sede;
 use Filament\Forms;
@@ -11,15 +10,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PlanResource extends Resource
 {
     protected static ?string $model = Plan::class;
-
     protected static ?string $navigationGroup = 'Planificación';
-
     protected static ?string $navigationIcon = 'heroicon-o-document';
     protected static ?string $navigationLabel = 'Planes';
     protected static ?string $pluralModelLabel = 'Planes';
@@ -28,16 +23,16 @@ class PlanResource extends Resource
     {
         return $form
             ->schema([
-               Forms\Components\Section::make([
+                Forms\Components\Section::make([
 
                     Forms\Components\TextInput::make('silabo_id')
                         ->numeric()
                         ->default(null),
 
                     Forms\Components\Select::make('sede_id')
-                    ->label('Sede')
-                    ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
-                    ->searchable(),
+                        ->label('Sede')
+                        ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
+                        ->searchable(),
 
                     Forms\Components\TextInput::make('detalle_silabo_id')
                         ->numeric()
@@ -61,13 +56,13 @@ class PlanResource extends Resource
                 ]
 
                 )
-                ->columns()
-                ->description('Registro de Planes')
-                ->icon('heroicon-o-sparkles')
-                ->iconColor('success')
-                ->iconSize('lg')
+                    ->columns()
+                    ->description('Registro de Planes')
+                    ->icon('heroicon-o-sparkles')
+                    ->iconColor('success')
+                    ->iconSize('lg'),
 
-           ] );
+            ]);
     }
 
     public static function table(Table $table): Table

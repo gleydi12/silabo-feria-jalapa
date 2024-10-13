@@ -3,32 +3,25 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SedeResource\Pages;
-use App\Filament\Resources\SedeResource\RelationManagers;
 use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SedeResource extends Resource
 {
     protected static ?string $model = Sede::class;
-
     protected static ?string $navigationGroup = 'Infraestructura';
-
     protected static ?string $recordTitleAttribute = 'nombre';
-
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-              Forms\Components\Section::make([
+                Forms\Components\Section::make([
 
                     Forms\Components\TextInput::make('nombre')
                         ->required()
@@ -43,17 +36,15 @@ class SedeResource extends Resource
                         ->required()
                         ->maxLength(255),
 
-             ]
-             )
-
-             ->columns()
-             ->description('Registro de Sedes')
-             ->icon('heroicon-o-sparkles')
-             ->iconColor('success')
-             ->iconSize('lg')
+                ]
+                )
+                    ->columns()
+                    ->description('Registro de Sedes')
+                    ->icon('heroicon-o-sparkles')
+                    ->iconColor('success')
+                    ->iconSize('lg'),
                 //->colap
-           ]);
-
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -105,7 +96,7 @@ class SedeResource extends Resource
     {
         return [
             'index' => Pages\ListSedes::route('/'),
-          //  'create' => Pages\CreateSede::route('/create'),
+            //  'create' => Pages\CreateSede::route('/create'),
             'edit' => Pages\EditSede::route('/{record}/edit'),
         ];
     }

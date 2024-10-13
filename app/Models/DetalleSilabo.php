@@ -11,7 +11,7 @@ class DetalleSilabo extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public $fillable =[
+    public $fillable = [
         'silabo_id',
         'encuentro',
         'fecha',

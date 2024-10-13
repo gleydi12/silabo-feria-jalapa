@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AulaResource\Pages;
-use App\Filament\Resources\AulaResource\RelationManagers;
 use App\Models\Aula;
 use App\Models\Sede;
 use Filament\Forms;
@@ -11,17 +10,12 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AulaResource extends Resource
 {
     protected static ?string $model = Aula::class;
-
     protected static ?string $navigationGroup = 'Infraestructura';
-
     protected static ?string $recordTitleAttribute = 'nombre';
-
     protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
     public static function form(Form $form): Form
@@ -36,17 +30,17 @@ class AulaResource extends Resource
                             ->maxLength(255),
 
                         Forms\Components\Select::make('sede_id')
-                        ->label('Sede')
-                        ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
-                        ->searchable(),
+                            ->label('Sede')
+                            ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
+                            ->searchable(),
                     ]
                 )
-                ->columns()
-                ->description('Registro de Aulas')
-                ->icon('heroicon-o-sparkles')
-                ->iconColor('success')
-                ->iconSize('lg')
-           ] );
+                    ->columns()
+                    ->description('Registro de Aulas')
+                    ->icon('heroicon-o-sparkles')
+                    ->iconColor('success')
+                    ->iconSize('lg'),
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -97,7 +91,7 @@ class AulaResource extends Resource
     {
         return [
             'index' => Pages\ListAulas::route('/'),
-           //'create' => Pages\CreateAula::route('/create'),
+            //'create' => Pages\CreateAula::route('/create'),
             'edit' => Pages\EditAula::route('/{record}/edit'),
         ];
     }

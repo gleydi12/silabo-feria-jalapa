@@ -14,8 +14,8 @@ class ListHorarios extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->icon('heroicon-m-plus')
-            ->label('Registrar Horario'),
+                ->icon('heroicon-m-plus')
+                ->label('Registrar Horario'),
         ];
     }
 }

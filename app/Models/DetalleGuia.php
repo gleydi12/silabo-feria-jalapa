@@ -13,13 +13,12 @@ class DetalleGuia extends Model
 
     public $fillable = [
 
-     'guia_id',
-    'detalle_silabo_id',
-    'actividades',
-    'evaluacion',
-    'recursos',
-    'fecha',
+        'guia_id',
+        'detalle_silabo_id',
+        'actividades',
+        'evaluacion',
+        'recursos',
+        'fecha',
     ];
-
     public $table = 'detalle_guias';
 }
