@@ -13,6 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+use function App\Utils\select_sedes;
+
 class GuiaResource extends Resource
 {
     protected static ?string $model = Guia::class;
@@ -38,10 +40,8 @@ class GuiaResource extends Resource
                     ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
                     ->searchable(),
 
-                Forms\Components\Select::make('sede_id')
-                    ->label('Sede')
-                    ->options(Sede::all()->pluck('nombre', 'id'))
-                    ->searchable(),
+                // Lista de sedes
+                select_sedes(),
 
                 Forms\Components\Select::make('asignatura_id')
                     ->label('asignatura')

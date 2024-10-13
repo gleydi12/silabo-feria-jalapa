@@ -14,6 +14,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+use function App\Utils\select_sedes;
+
 class HorarioResource extends Resource
 {
     protected static ?string $model = Horario::class;
@@ -39,10 +41,8 @@ class HorarioResource extends Resource
                     ->options(Aula::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla aula
                     ->searchable(),
 
-                Forms\Components\Select::make('sede_id')
-                    ->label('Sede')
-                    ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
-                    ->searchable(),
+                // Lista de sedes
+                select_sedes(),
 
                 Forms\Components\TextInput::make('anio_lectivo_id')
                     ->numeric()

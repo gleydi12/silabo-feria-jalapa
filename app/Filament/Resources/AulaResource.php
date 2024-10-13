@@ -11,6 +11,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+use function App\Utils\select_sedes;
+
 class AulaResource extends Resource
 {
     protected static ?string $model = Aula::class;
@@ -29,10 +31,8 @@ class AulaResource extends Resource
                             ->required()
                             ->maxLength(255),
 
-                        Forms\Components\Select::make('sede_id')
-                            ->label('Sede')
-                            ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
-                            ->searchable(),
+                        // Lista de sedes
+                        select_sedes(),
                     ]
                 )
                     ->columns()

@@ -13,6 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+use function App\Utils\select_sedes;
+
 class SilaboResource extends Resource
 {
     protected static ?string $model = Silabo::class;
@@ -33,10 +35,8 @@ class SilaboResource extends Resource
                     ->options(User::all()->pluck('name', 'id')) // nombre e id son los campos de la tabla user
                     ->searchable(),
 
-                Forms\Components\Select::make('sede_id')
-                    ->label('Sede')
-                    ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
-                    ->searchable(),
+                // Lista de sedes
+                select_sedes(),
 
                 Forms\Components\TextInput::make('anio_lectivo_id')
                     ->numeric()

@@ -11,6 +11,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+use function App\Utils\select_sedes;
+
 class PlanResource extends Resource
 {
     protected static ?string $model = Plan::class;
@@ -29,10 +31,8 @@ class PlanResource extends Resource
                         ->numeric()
                         ->default(null),
 
-                    Forms\Components\Select::make('sede_id')
-                        ->label('Sede')
-                        ->options(Sede::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla sede
-                        ->searchable(),
+                        // Lista de sedes
+                        select_sedes(),
 
                     Forms\Components\TextInput::make('detalle_silabo_id')
                         ->numeric()
