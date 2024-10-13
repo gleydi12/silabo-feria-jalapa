@@ -31,7 +31,5 @@ class Asignatura extends Model
         'autorizado_por',
 
     ];
-
     public $table = 'asignaturas';
-
 }

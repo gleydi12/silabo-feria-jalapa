@@ -11,7 +11,7 @@ class Silabo extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public $fillable =[
+    public $fillable = [
         'asignatura_id',
         'user_id',
         'cede_id',

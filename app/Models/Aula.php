@@ -15,8 +15,5 @@ class Aula extends Model
         'nombre',
         'sede_id',
     ];
-
     public $table = 'aulas';
 }
-
-

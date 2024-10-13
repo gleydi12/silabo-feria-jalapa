@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Carrera extends Model
 {
     use HasFactory;
-   use SoftDeletes;
-
+    use SoftDeletes;
 
     public $fillable = [
         'nombre',
         'duracion',
     ];
-
     public $table = 'carreras';
 }

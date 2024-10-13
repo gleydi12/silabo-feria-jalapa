@@ -11,7 +11,7 @@ class Horario extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public $fillable=[
+    public $fillable = [
         'carrera_id',
         'user_id',
         'aula_id',
@@ -21,4 +21,3 @@ class Horario extends Model
     ];
     public $table = 'horarios';
 }
-

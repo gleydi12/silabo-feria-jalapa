@@ -11,14 +11,13 @@ class Data extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public $fillable =[
-    'value',
-'categoria_id',
-'tipo_dato_id',
-'asignable',
-'depende_de_id',
+    public $fillable = [
+        'value',
+        'categoria_id',
+        'tipo_dato_id',
+        'asignable',
+        'depende_de_id',
 
     ];
     public $table = 'datas';
-
 }

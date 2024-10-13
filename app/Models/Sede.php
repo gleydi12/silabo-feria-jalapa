@@ -17,6 +17,5 @@ class Sede extends Model
         'municipio',
         'departamento',
     ];
-
     public $table = 'sedes';
 }
