@@ -2,6 +2,6 @@
 
 @config 'tailwind.config.js';
 
-.fi-logo{
+.fi-logo {
     @apply dark:invert;
 }
