@@ -4,12 +4,21 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
+
+    // Tipos de usuarios de la app.
+    // Se definen como constantes para evitar errores de escritura.
+    const ADMIN = 1;
+    const OFICINAS = 25;
+    const DOCENTES = 50;
 
     /**
      * The attributes that are mass assignable.
