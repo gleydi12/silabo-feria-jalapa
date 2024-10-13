@@ -1,0 +1,56 @@
+{
+    "preset": "laravel",
+    "rules" : {
+        "single_quote": true,
+        "array_indentation": true,
+        "blank_line_after_namespace": true,
+        "blank_line_after_opening_tag": true,
+        "blank_line_before_statement": {
+            "statements": [
+                "return",
+                "if",
+                "foreach",
+                "for",
+                "switch",
+                "throw",
+                "try",
+                "while",
+                "do",
+                "break",
+                "continue",
+                "declare",
+                "exit",
+                "goto",
+                "yield"
+            ]
+        },
+        "class_definition": {
+            "multi_line_extends_each_single_line": true,
+            "single_item_single_line": true,
+            "single_line": true
+        },
+        "braces": true,
+        "class_attributes_separation": {
+            "elements": {
+                "const": "none",
+                "method": "one",
+                "property": "none",
+                "trait_import": "none"
+            }
+        },
+        "heredoc_to_nowdoc": true,
+        "phpdoc_indent": true,
+        "phpdoc_inline_tag_normalizer": true,
+        "phpdoc_no_access": true,
+        "phpdoc_no_package": true,
+        "phpdoc_no_useless_inheritdoc": true,
+        "phpdoc_scalar": true,
+        "phpdoc_single_line_var_spacing": true,
+        "phpdoc_summary": false,
+        "phpdoc_to_comment": false,
+        "phpdoc_tag_type": true,
+        "phpdoc_trim": true,
+        "phpdoc_types": true,
+        "phpdoc_var_without_name": true
+    }
+}
