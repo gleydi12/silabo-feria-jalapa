@@ -28,6 +28,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'sede_id',
         'password',
     ];
 
@@ -52,5 +53,26 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //Relacion con sede
+    public function sede()
+    {
+        return $this->belongsTo(Sede::class);
+    }
+
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->tipo === self::ADMIN;
+    }
+
+    public function getIsOficinaAttribute(): bool
+    {
+        return $this->tipo === self::OFICINAS;
+    }
+
+    public function getIsDocenteAttribute(): bool
+    {
+        return $this->tipo === self::DOCENTES;
     }
 }
