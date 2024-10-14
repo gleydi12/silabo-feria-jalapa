@@ -9,6 +9,14 @@ use Filament\Notifications\Notification;
 
 function tipos_usuarios(): array
 {
+
+    //validar si el usuario ess administrador
+    if(!isAdmin()){
+        return [
+        25 => 'OFICINAS',
+        50 => 'DOCENTES',
+        ];
+    }
     return [
         1 => 'ADMIN',
         25 => 'OFICINAS',
@@ -19,7 +27,7 @@ function tipos_usuarios(): array
 function select_sedes(): Select
 {
     return Select::make('sede_id')
-        ->hidden(! auth()->user()->is_admin)
+        ->hidden(!isAdmin())
         ->label('Sede')
         ->searchable()
         ->options(fn () => Sede::pluck('nombre', 'id'));

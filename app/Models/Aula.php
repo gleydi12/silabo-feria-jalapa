@@ -16,4 +16,11 @@ class Aula extends Model
         'sede_id',
     ];
     public $table = 'aulas';
+
+    public function sede()
+    {
+        //belongsto: reacion de uno a uno
+        return $this->belongsTo(Sede::class);
+    }
+
 }

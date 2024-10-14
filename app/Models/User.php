@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
-
+    use HasRoles;
     // Tipos de usuarios de la app.
     // Se definen como constantes para evitar errores de escritura.
     const ADMIN = 1;
@@ -58,6 +59,7 @@ class User extends Authenticatable
     //Relacion con sede
     public function sede()
     {
+        //belongsto: reacion de uno a uno
         return $this->belongsTo(Sede::class);
     }
 

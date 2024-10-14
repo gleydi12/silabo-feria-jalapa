@@ -20,4 +20,32 @@ class Horario extends Model
 
     ];
     public $table = 'horarios';
+
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class);
+    }
+
+    public function profesor()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function aula()
+    {
+        return $this->belongsTo(Aula::class);
+    }
+
+    public function sede()
+    {
+        return $this->belongsTo(Sede::class);
+    }
+
+    public function anio_lectivo()
+    {
+        return $this->belongsTo(Catalogo::class, 'anio_lectivo_id');
+    }
 }
+
+
+

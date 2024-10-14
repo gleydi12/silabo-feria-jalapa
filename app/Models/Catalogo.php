@@ -15,5 +15,5 @@ class Catalogo extends Model
         'nombre',
         'depende_de',
     ];
-    public $table = 'catagolos';
+    public $table = 'catalogos';
 }

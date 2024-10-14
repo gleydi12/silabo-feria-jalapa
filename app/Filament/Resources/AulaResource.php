@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 
 use function App\Utils\select_sedes;
+use function App\Utils\isAdmin;
 
 class AulaResource extends Resource
 {
@@ -49,9 +50,11 @@ class AulaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sede_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('sede.nombre')
+                ->hidden(! isAdmin(
+                ))
                     ->sortable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
