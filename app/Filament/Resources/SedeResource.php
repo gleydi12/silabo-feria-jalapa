@@ -16,6 +16,7 @@ class SedeResource extends Resource
     protected static ?string $navigationGroup = 'Infraestructura';
     protected static ?string $recordTitleAttribute = 'nombre';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
