@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AulaResource\Pages;
 use App\Models\Aula;
+use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,6 +16,7 @@ use function App\Utils\select_sedes;
 
 class AulaResource extends Resource
 {
+    use HasBadgeCount;
     protected static ?string $model = Aula::class;
     protected static ?string $navigationGroup = 'Infraestructura';
     protected static ?string $recordTitleAttribute = 'nombre';

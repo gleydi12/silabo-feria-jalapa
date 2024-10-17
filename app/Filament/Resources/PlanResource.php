@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PlanResource\Pages;
 use App\Models\Plan;
+use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,6 +15,8 @@ use function App\Utils\select_sedes;
 
 class PlanResource extends Resource
 {
+    use HasBadgeCount;
+
     protected static ?string $model = Plan::class;
     protected static ?string $navigationGroup = 'Planificación';
     protected static ?string $navigationIcon = 'heroicon-o-document';

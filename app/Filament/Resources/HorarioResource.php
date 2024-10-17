@@ -8,6 +8,7 @@ use App\Models\Carrera;
 use App\Models\Catalogo;
 use App\Models\Horario;
 use App\Models\User;
+use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,6 +20,8 @@ use function App\Utils\isAdmin;
 
 class HorarioResource extends Resource
 {
+    use HasBadgeCount;
+
     protected static ?string $model = Horario::class;
     protected static ?string $navigationGroup = 'Planificación';
     protected static ?string $navigationIcon = 'heroicon-o-clock';

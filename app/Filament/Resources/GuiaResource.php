@@ -7,6 +7,7 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Guia;
 use App\Models\Sede;
+use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,6 +18,8 @@ use function App\Utils\select_sedes;
 
 class GuiaResource extends Resource
 {
+    use HasBadgeCount;
+
     protected static ?string $model = Guia::class;
     protected static ?string $navigationGroup = 'Planificación';
     protected static ?string $navigationIcon = 'heroicon-o-document-check';

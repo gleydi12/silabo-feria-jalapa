@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\Sede;
 use App\Models\User;
+use App\Traits\HasBadgeCount;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -25,6 +26,8 @@ use function App\Utils\tipos_usuarios;
 
 class UserResource extends Resource
 {
+    use HasBadgeCount;
+
     protected static ?string $model = User::class;
     protected static ?string $navigationGroup = 'Personal';
     protected static ?string $pluralLabel = 'Usuarios';

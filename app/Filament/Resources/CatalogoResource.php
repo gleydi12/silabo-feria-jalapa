@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CatalogoResource\Pages;
 use App\Models\Catalogo;
+use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,8 @@ use Filament\Tables\Table;
 
 class CatalogoResource extends Resource
 {
+    use HasBadgeCount;
+
     protected static ?string $model = Catalogo::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

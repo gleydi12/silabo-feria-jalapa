@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SedeResource\Pages;
 use App\Models\Sede;
+use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,8 @@ use Filament\Tables\Table;
 
 class SedeResource extends Resource
 {
+    use HasBadgeCount;
+
     protected static ?string $model = Sede::class;
     protected static ?string $navigationGroup = 'Infraestructura';
     protected static ?string $recordTitleAttribute = 'nombre';

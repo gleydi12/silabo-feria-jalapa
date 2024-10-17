@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CarreraResource\Pages;
 use App\Models\Carrera;
+use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,8 @@ use Filament\Tables\Table;
 
 class CarreraResource extends Resource
 {
+    use HasBadgeCount;
+
     protected static ?string $model = Carrera::class;
     protected static ?string $navigationGroup = 'Currículo';
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
