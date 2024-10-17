@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PlanResource\Pages;
 use App\Models\Plan;
-use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -20,6 +19,7 @@ class PlanResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document';
     protected static ?string $navigationLabel = 'Planes';
     protected static ?string $pluralModelLabel = 'Planes';
+    protected static ?int $navigationSort = 7;
 
     public static function form(Form $form): Form
     {
@@ -31,8 +31,8 @@ class PlanResource extends Resource
                         ->numeric()
                         ->default(null),
 
-                        // Lista de sedes
-                        select_sedes(),
+                    // Lista de sedes
+                    select_sedes(),
 
                     Forms\Components\TextInput::make('detalle_silabo_id')
                         ->numeric()
