@@ -20,6 +20,8 @@ class Catalogo extends Model
     // Relación reflexiva de pertenencia en la misma tabla
     public function depende()
     {
-        return $this->belongsTo(self::class, 'depende_de');
+        return $this->belongsTo(self::class, 'depende_de')->withDefault([
+            'nombre' => 'Ninguno',
+        ]);
     }
 }
