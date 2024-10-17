@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 
 class CatalogoResource extends Resource
@@ -41,6 +42,12 @@ class CatalogoResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultGroup('depende_de')
+            ->groups([
+                Group::make('depende_de')
+                    ->collapsible()
+                    ->getTitleFromRecordUsing(fn (Catalogo $record): string => ucfirst($record->depende->nombre)),
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('nombre'),
                 Tables\Columns\TextColumn::make('depende.nombre'),
