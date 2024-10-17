@@ -66,7 +66,7 @@ class HorarioResource extends Resource
                             ->label('Trimestre')
                             ->options(Catalogo::where('depende_de', 2)->pluck('nombre', 'id')),
                     ])
-                ->columns(2)
+                    ->columns(2),
             ]);
     }
 
