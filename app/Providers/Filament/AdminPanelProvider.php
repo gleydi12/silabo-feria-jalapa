@@ -25,6 +25,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->profile()
+            ->breadcrumbs(false)
             ->domain(config('app.url'))
             ->id('admin')
             ->login()
