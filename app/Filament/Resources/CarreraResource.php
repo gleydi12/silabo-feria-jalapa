@@ -24,12 +24,18 @@ class CarreraResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('duracion')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Section::make('Datos de la Carrera')
+                    ->schema([
+                        Forms\Components\TextInput::make('nombre')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('duracion')
+                            ->required()
+                            ->numeric(),
+                    ])
+                    ->columns()
+                    ->description('Información de la Carrera')
+                    ->icon('heroicon-o-academic-cap'),
             ]);
     }
 
