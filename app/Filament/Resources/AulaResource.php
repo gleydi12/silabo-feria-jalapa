@@ -4,15 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AulaResource\Pages;
 use App\Models\Aula;
-use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-use function App\Utils\select_sedes;
 use function App\Utils\isAdmin;
+use function App\Utils\select_sedes;
 
 class AulaResource extends Resource
 {
@@ -20,6 +19,7 @@ class AulaResource extends Resource
     protected static ?string $navigationGroup = 'Infraestructura';
     protected static ?string $recordTitleAttribute = 'nombre';
     protected static ?string $navigationIcon = 'heroicon-o-home-modern';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -51,8 +51,7 @@ class AulaResource extends Resource
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sede.nombre')
-                ->hidden(! isAdmin(
-                ))
+                    ->hidden(! isAdmin())
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')
@@ -71,6 +70,13 @@ class AulaResource extends Resource
             ->filters([
                 //
             ])
+
+            ->modifyQueryUsing(function ($query) {
+                if (! isAdmin()) {
+                    $query->where('sede_id', auth()->user()->sede_id);
+                }
+            })
+
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
