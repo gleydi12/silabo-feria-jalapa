@@ -8,7 +8,7 @@
         "php": "^8.2",
         "bezhansalleh/filament-shield": "^3.2.6",
         "filament/filament": "^3.2.118",
-        "laravel/framework": "^11.28.1",
+        "laravel/framework": "11.27.2",
         "laravel/tinker": "^2.10"
     },
     "require-dev": {
