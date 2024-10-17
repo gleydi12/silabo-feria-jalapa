@@ -21,6 +21,8 @@ class AulaResource extends Resource
     protected static ?string $recordTitleAttribute = 'nombre';
     protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -71,6 +73,12 @@ class AulaResource extends Resource
             ->filters([
                 //
             ])
+            ->modifyQueryUsing(function($query){
+                if (! isAdmin()){
+                    $query->where('sede_id', auth()->user()->sede_id);
+        }
+            })
+
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

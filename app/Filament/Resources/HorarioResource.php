@@ -23,6 +23,8 @@ class HorarioResource extends Resource
     protected static ?string $navigationGroup = 'Planificación';
     protected static ?string $navigationIcon = 'heroicon-o-clock';
 
+    protected static ?int $navigationSort = 5;
+
     public static function form(Form $form): Form
     {
         return $form
