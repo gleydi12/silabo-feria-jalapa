@@ -16,4 +16,10 @@ class Catalogo extends Model
         'depende_de',
     ];
     public $table = 'catalogos';
+
+    // Relación reflexiva de pertenencia en la misma tabla
+    public function depende()
+    {
+        return $this->belongsTo(self::class, 'depende_de');
+    }
 }
