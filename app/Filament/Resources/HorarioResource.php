@@ -31,33 +31,42 @@ class HorarioResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('carrera_id')
-                    ->label('Carrera')
-                    ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
-                    ->searchable(),
+                Forms\Components\Section::make('Detalles del horario')
+                    ->schema([
+                        Forms\Components\Select::make('carrera_id')
+                            ->label('Carrera')
+                            ->options(Carrera::all()->pluck('nombre', 'id')) // nombre e id son los campos de la tabla carrera
+                            ->searchable(),
 
-                Forms\Components\Select::make('user_id')
-                    ->label('Profesor')
-                    ->options(
-                        User::where('sede_id', auth()->user()->sede_id)
-                            ->where('tipo', User::DOCENTES)
-                            ->pluck('name', 'id')
-                    )
-                    ->searchable(),
+                        Forms\Components\Select::make('user_id')
+                            ->label('Profesor')
+                            ->options(
+                                User::where('sede_id', auth()->user()->sede_id)
+                                    ->where('tipo', User::DOCENTES)
+                                    ->pluck('name', 'id')
+                            )
+                            ->searchable(),
 
-                Forms\Components\Select::make('aula_id')
-                    ->label('Aula')
-                    ->options(
-                        Aula::where('sede_id', auth()->user()->sede_id)
-                            ->pluck('nombre', 'id')
-                    )
-                    ->searchable(),
+                        // Lista de sedes
+                        select_sedes(),
 
-                // Lista de sedes
-                select_sedes(),
+                        Forms\Components\Select::make('aula_id')
+                            ->label('Aula')
+                            ->options(
+                                fn (Forms\Get $get) => Aula::where('sede_id', auth()->user()->sede_id)
+                                    ->orWhere('sede_id', $get('sede_id'))
+                                    ->pluck('nombre', 'id')
+                            )
+                            ->searchable(),
 
-                Forms\Components\Select::make('anio_lectivo_id')
-                    ->options(Catalogo::where('depende_de', 1)->pluck('nombre', 'id')),
+                        Forms\Components\Select::make('anio_lectivo_id')
+                            ->label('Año Lectivo')
+                            ->options(Catalogo::where('depende_de', 1)->pluck('nombre', 'id')),
+                        Forms\Components\Select::make('trimestre_id')
+                            ->label('Trimestre')
+                            ->options(Catalogo::where('depende_de', 2)->pluck('nombre', 'id')),
+                    ])
+                ->columns(2)
             ]);
     }
 
@@ -65,33 +74,23 @@ class HorarioResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('carrera.nombre')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('profesor.name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('aula.nombre')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('carrera.nombre')->searchable(),
+                Tables\Columns\TextColumn::make('profesor.name')->searchable(),
+                Tables\Columns\TextColumn::make('aula.nombre')->searchable(),
                 Tables\Columns\TextColumn::make('sede.nombre')
-                    ->hidden(! isAdmin(
-
-                    ))
+                    ->hidden(! isAdmin())
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('anio_lectivo.nombre')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('anio_lectivo.nombre')->searchable(),
+                Tables\Columns\TextColumn::make('trimestre.nombre')->searchable(),
             ])
+            ->modifyQueryUsing(function ($query) {
+                if (! isAdmin()) {
+                    $query
+                        ->where('user_id', auth()->id())
+                        ->orWhere('sede_id', auth()->user()->sede_id);
+                }
+            })
             ->filters([
                 //
             ])
