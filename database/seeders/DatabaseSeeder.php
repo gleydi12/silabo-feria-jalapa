@@ -13,12 +13,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Cargar los permisos existentes y sus roles
+        $this->call(ShieldSeeder::class);
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
         ]);
+        // Asignar el rol de super admin al usuario admin
+        $user->assignRole('super_admin');
+
+        // Crear 10 usuarios de prueba de tipo oficina
+        User::factory()->count(10)->create([
+            'tipo' => User::OFICINAS,
+        ])->each(function ($user) {
+            $user->assignRole('oficina');
+        });
+
+        // Crear 10 usuarios de prueba de tipo profesor
+        User::factory()->count(10)->create([
+            'tipo' => User::DOCENTES,
+        ])->each(function ($user) {
+            $user->assignRole('profesor');
+        });
     }
 }
