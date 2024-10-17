@@ -14,13 +14,13 @@ class ListAulas extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->mutateFormDataUsing(function ($data){
-             if (! isset($data ['sede_id'])) {
-                $data['sede_id'] = auth()->user()->sede_id;
-             }
+                ->mutateFormDataUsing(function ($data) {
+                    if (! isset($data['sede_id'])) {
+                        $data['sede_id'] = auth()->user()->sede_id;
+                    }
 
-                return $data;
-            })
+                    return $data;
+                })
                 ->icon('heroicon-m-plus')
                 ->label('Registrar aula'),
         ];

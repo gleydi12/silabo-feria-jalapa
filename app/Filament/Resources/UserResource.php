@@ -94,7 +94,7 @@ class UserResource extends Resource
             ->filters([
                 SelectFilter::make('sede_id')
                     ->label('Sede')
-                    ->hidden(!isAdmin())
+                    ->hidden(! isAdmin())
                     ->options(fn () => Sede::pluck('nombre', 'id')),
                 SelectFilter::make('tipo')
                     ->label('Tipo de usuario')

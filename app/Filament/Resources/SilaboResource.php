@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SilaboResource\Pages;
 use App\Models\Asignatura;
-use App\Models\Sede;
 use App\Models\Silabo;
 use App\Models\User;
 use App\Traits\HasBadgeCount;

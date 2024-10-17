@@ -9,14 +9,14 @@ use Filament\Notifications\Notification;
 
 function tipos_usuarios(): array
 {
-
     //validar si el usuario ess administrador
-    if(!isAdmin()){
+    if (! isAdmin()) {
         return [
-        25 => 'OFICINAS',
-        50 => 'DOCENTES',
+            25 => 'OFICINAS',
+            50 => 'DOCENTES',
         ];
     }
+
     return [
         1 => 'ADMIN',
         25 => 'OFICINAS',
@@ -27,7 +27,7 @@ function tipos_usuarios(): array
 function select_sedes(): Select
 {
     return Select::make('sede_id')
-        ->hidden(!isAdmin())
+        ->hidden(! isAdmin())
         ->label('Sede')
         ->searchable()
         ->options(fn () => Sede::pluck('nombre', 'id'));
@@ -43,8 +43,10 @@ function verify_if_emails_is_taken($object): bool
             ->body('El correo ya existe en la base de datos.')
             ->persistent()
             ->send();
+
         return true;
     }
+
     return false;
 }
 

@@ -6,7 +6,6 @@ use App\Filament\Resources\GuiaResource\Pages;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Guia;
-use App\Models\Sede;
 use App\Traits\HasBadgeCount;
 use Filament\Forms;
 use Filament\Forms\Form;

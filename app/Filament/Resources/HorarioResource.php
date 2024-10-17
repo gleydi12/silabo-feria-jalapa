@@ -15,8 +15,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-use function App\Utils\select_sedes;
 use function App\Utils\isAdmin;
+use function App\Utils\select_sedes;
 
 class HorarioResource extends Resource
 {
@@ -57,7 +57,7 @@ class HorarioResource extends Resource
                 select_sedes(),
 
                 Forms\Components\Select::make('anio_lectivo_id')
-                    ->options(Catalogo::where('depende_de',1)->pluck('nombre', 'id')),
+                    ->options(Catalogo::where('depende_de', 1)->pluck('nombre', 'id')),
             ]);
     }
 
@@ -72,9 +72,9 @@ class HorarioResource extends Resource
                 Tables\Columns\TextColumn::make('aula.nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sede.nombre')
-                ->hidden(! isAdmin(
+                    ->hidden(! isAdmin(
 
-                ))
+                    ))
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('anio_lectivo.nombre')
@@ -121,6 +121,3 @@ class HorarioResource extends Resource
         ];
     }
 }
-
-
-

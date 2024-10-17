@@ -17,6 +17,7 @@ use function App\Utils\select_sedes;
 class AulaResource extends Resource
 {
     use HasBadgeCount;
+
     protected static ?string $model = Aula::class;
     protected static ?string $navigationGroup = 'Infraestructura';
     protected static ?string $recordTitleAttribute = 'nombre';

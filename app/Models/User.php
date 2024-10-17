@@ -15,9 +15,10 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasFactory;
+    use HasRoles;
     use Notifiable;
     use SoftDeletes;
-    use HasRoles;
+
     // Tipos de usuarios de la app.
     // Se definen como constantes para evitar errores de escritura.
     const ADMIN = 1;

@@ -15,12 +15,15 @@ class UserObserver
         switch ($user->tipo) {
             case User::ADMIN:
                 $user->assignRole('super_admin');
+
                 break;
             case User::OFICINAS:
                 $user->assignRole('oficina');
+
                 break;
             case User::DOCENTES:
                 $user->assignRole('profesor');
+
                 break;
         }
     }

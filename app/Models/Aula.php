@@ -22,5 +22,4 @@ class Aula extends Model
         //belongsto: reacion de uno a uno
         return $this->belongsTo(Sede::class);
     }
-
 }
