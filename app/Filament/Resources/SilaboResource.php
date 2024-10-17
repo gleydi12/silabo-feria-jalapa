@@ -20,6 +20,7 @@ class SilaboResource extends Resource
     protected static ?string $model = Silabo::class;
     protected static ?string $navigationGroup = 'Planificación';
     protected static ?string $navigationIcon = 'heroicon-o-table-cells';
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
