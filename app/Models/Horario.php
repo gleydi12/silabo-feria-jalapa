@@ -45,4 +45,9 @@ class Horario extends Model
     {
         return $this->belongsTo(Catalogo::class, 'anio_lectivo_id');
     }
+
+    public function trimestre()
+    {
+        return $this->belongsTo(Catalogo::class, 'trimestre_id');
+    }
 }
