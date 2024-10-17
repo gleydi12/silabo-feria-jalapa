@@ -15,6 +15,7 @@ class CarreraResource extends Resource
     protected static ?string $model = Carrera::class;
     protected static ?string $navigationGroup = 'Currículo';
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
